@@ -11,13 +11,17 @@ app.use(cors({ origin: "http://localhost:5173" }));
 app.use(json());
 app.use(rateLimit({ windowMs: 15 * 60 * 1000, max: 100 }));
 app.use("/api/auth", authRoutes);
+app.use("/api/auth", require("./routes/auth.cjs"));
+app.use("/api/expenses", require("./routes/expenses.cjs"));
+app.use("/api/budgets", require("./routes/budgets.cjs"));
+app.use("/api/accounts", require("./routes/accounts.cjs"));
 
 // eslint-disable-next-line no-undef
 connect(process.env.MONGO_URI).then(() => console.log("MongoDB connected"));
 
 // Routes
 // eslint-disable-next-line no-undef
-app.use("/api/auth", require("./routes/auth"));
+app.use("/api/auth", require("./routes/auth.js"));
 // eslint-disable-next-line no-undef
 app.use("/api/expenses", require("./routes/expenses"));
 // eslint-disable-next-line no-undef
