@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "type": "module",
   "scripts": {
-    "start": "node server.cjs",
+    "start": "node server.js",
     "dev": "node server.js"
   },
   "keywords": [],
