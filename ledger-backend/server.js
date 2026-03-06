@@ -3,7 +3,8 @@ import { connect } from "mongoose";
 import cors from "cors";
 import rateLimit from "express-rate-limit";
 // eslint-disable-next-line no-undef
-require("dotenv").config();
+import dotenv from "dotenv";
+dotenv.config();
 
 const app = express();
 app.use(cors({ origin: "http://localhost:5173" }));
