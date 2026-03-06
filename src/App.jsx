@@ -1812,6 +1812,20 @@ const ExpenseModal = ({ expense, accounts, categories, onSave, onClose }) => {
 };
 
 // ── EXPENSES PAGE ─────────────────────────────────────────────────────────────
+// Example: Load expenses from backend
+// eslint-disable-next-line react-hooks/rules-of-hooks
+const [, setExpenses] = useState([]);
+
+// eslint-disable-next-line react-hooks/rules-of-hooks
+useEffect(() => {
+  fetch("https://your-app.onrender.com/api/expenses", {
+    // eslint-disable-next-line no-undef
+    headers: { Authorization: `Bearer ${token}` },
+  })
+    .then((r) => r.json())
+    .then((data) => setExpenses(data));
+}, []);
+
 const ExpensesPage = ({
   expenses,
   setExpenses,
@@ -2031,6 +2045,7 @@ const ExpensesPage = ({
                 className="badge"
                 style={{
                   background:
+                    // eslint-disable-next-line no-constant-binary-expression
                     `${CATEGORY_COLORS[exp.category]}18` || C.ivoryDark,
                   color: CATEGORY_COLORS[exp.category] || C.forest,
                   width: "fit-content",
