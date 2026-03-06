@@ -2,7 +2,7 @@ import express, { json } from "express";
 import { connect } from "mongoose";
 import cors from "cors";
 import rateLimit from "express-rate-limit";
-// eslint-disable-next-line no-undef
+import authRoutes from "./routes/auth.js";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -10,6 +10,7 @@ const app = express();
 app.use(cors({ origin: "http://localhost:5173" }));
 app.use(json());
 app.use(rateLimit({ windowMs: 15 * 60 * 1000, max: 100 }));
+app.use("/api/auth", authRoutes);
 
 // eslint-disable-next-line no-undef
 connect(process.env.MONGO_URI).then(() => console.log("MongoDB connected"));
